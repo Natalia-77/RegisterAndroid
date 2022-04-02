@@ -1,18 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:paddingBottom="15dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="5dp"
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="383dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="20dp"
+        android:hint="@string/name"
+        android:inputType="text"
+        android:maxLength="50"
+        android:maxLines="1"
+        android:paddingLeft="15dp"
+        android:singleLine="true"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="383dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="20dp"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:maxLength="50"
+        android:maxLines="1"
+        android:paddingLeft="15dp"
+        android:singleLine="true"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:id="@+id/pass"
+        android:layout_width="383dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="20dp"
+        android:hint="@string/pass"
+        android:inputType="text"
+        android:maxLength="50"
+        android:maxLines="1"
+        android:paddingLeft="15dp"
+        android:singleLine="true"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:id="@+id/confirm"
+        android:layout_width="383dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="20dp"
+        android:hint="@string/confirm"
+        android:inputType="text"
+        android:maxLength="50"
+        android:maxLines="1"
+        android:paddingLeft="15dp"
+        android:singleLine="true"
+        android:textColor="@android:color/black" />
+
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="150dp"
+        android:layout_height="120dp"
+        android:contentDescription="@string/photo" />
+
+    <Button
+        android:id="@+id/select"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="@string/select" />
+
+    <Button
+        android:id="@+id/upload"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/upload" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register" />
+
+
+</LinearLayout>
