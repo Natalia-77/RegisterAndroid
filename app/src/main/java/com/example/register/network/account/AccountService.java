@@ -16,9 +16,9 @@ public class AccountService {
     private AccountService()
     {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.connectTimeout(15, TimeUnit.SECONDS);
-        builder.writeTimeout(15, TimeUnit.SECONDS);
-        builder.readTimeout(30, TimeUnit.SECONDS)
+        builder.connectTimeout(60, TimeUnit.SECONDS);
+        builder.writeTimeout(60, TimeUnit.SECONDS);
+        builder.readTimeout(60, TimeUnit.SECONDS)
        .build();
 
         retrofit = new Retrofit.Builder()
@@ -36,8 +36,8 @@ public class AccountService {
         return instance;
     }
 
-    public Api getApi()
+    public AccountApi json()
     {
-        return retrofit.create(Api.class);
+        return retrofit.create(AccountApi.class);
     }
 }
