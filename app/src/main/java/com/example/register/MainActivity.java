@@ -1,12 +1,8 @@
 package com.example.register;
 
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
+
 import androidx.appcompat.app.AppCompatActivity;
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -39,25 +35,6 @@ public class MainActivity extends AppCompatActivity {
     static final String USER_KEY = "USER";
     String selectPhoto="";
 
-//    ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-//            new ActivityResultCallback<ActivityResult>() {
-//                @Override
-//                public void onActivityResult(ActivityResult result) {
-//                    image = findViewById(R.id.image);
-//                    if(result.getResultCode() == Activity.RESULT_OK) {
-//                        Intent intent = result.getData();
-//                        Uri filePath = intent.getData();
-//                        try {
-//                            //getting image from gallery
-//                            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-//                            //Setting image to ImageView
-//                            image.setImageURI(filePath);
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }
-//           });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 byte[] bytes=stream.toByteArray();
                 selectPhoto= Base64.encodeToString(bytes,Base64.DEFAULT);
             }
+
         }
     }
 
@@ -124,11 +102,19 @@ public class MainActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             RegisterResponse data = response.body();
                             System.out.println("------++++++++++++++++-----");
+                            //За умови 200 - перехід на іншу activity ...
+                            Intent intent = new Intent(MainActivity.this, SuccessActivity.class);
+                            String nameUser = name.getText().toString();
+                            //отримали ім"я зареєстрованого користувача і передали на іншу activity
+                            intent.putExtra(USER_KEY, nameUser);
+                            startActivity(intent);
+
 
                         } else {
                             try {
                                 System.out.println("******************");
                                 System.out.println(response.code());
+                                System.out.println(response.errorBody().string());
                             } catch (Exception e) {
                                 System.out.println("------Error response parse body-----");
                             }
@@ -141,12 +127,6 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-
-//            Intent intent = new Intent(MainActivity.this, SuccessActivity.class);
-//            String nameUser = name.getText().toString();
-//            intent.putExtra(USER_KEY, nameUser);
-//            mStartForResult.launch(intent);
-
 
     }
 }

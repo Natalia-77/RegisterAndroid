@@ -1,9 +1,9 @@
 package com.example.register.network.account;
 
+
 import com.example.register.constants.Url;
 
 import java.util.concurrent.TimeUnit;
-
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -15,14 +15,15 @@ public class AccountService {
 
     private AccountService()
     {
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.connectTimeout(60, TimeUnit.SECONDS);
-        builder.writeTimeout(60, TimeUnit.SECONDS);
-        builder.readTimeout(60, TimeUnit.SECONDS)
-       .build();
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(20, TimeUnit.SECONDS)
+                .writeTimeout(20, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(Url.baseUrl)
+                .client(okHttpClient)
+                .baseUrl(Url.urls)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
