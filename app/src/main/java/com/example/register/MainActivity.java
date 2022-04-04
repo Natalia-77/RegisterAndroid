@@ -41,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
     static final String USER_KEY = "USER";
     String selectPhoto="";
 
-//
+    //функція,що обробляє результат повертає об"єкт ActivityResultLauncher,який застосовується для запуску іншої activity.
+    //ActivityResultCallback представляє інтерфейс з методом onActivityResult,якийуде обробляти результат.
+    //На вхід у мене приймає об"єкт Intent,повертає ActivityResult
     ActivityResultLauncher<Intent> startResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
@@ -84,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
+
+        //У об"екта ActivityResultLauncher викликається метод launch():
         startResult.launch(Intent.createChooser(intent, "Select Image"));
 
     }
@@ -121,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                                 System.out.println(response.code());
                                 System.out.println(response.errorBody().string());
                             } catch (Exception e) {
-                                System.out.println("------Error response parse body-----");
+                                System.out.println("---Error response parse body---");
                             }
                         }
                     }
