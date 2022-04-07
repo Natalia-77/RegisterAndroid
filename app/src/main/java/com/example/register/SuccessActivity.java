@@ -17,7 +17,8 @@ public class SuccessActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             TextView userView = findViewById(R.id.tvuser);
-            String username = extras.getString(MainActivity.USER_KEY);
+            //String username = extras.getString(MainActivity.USER_KEY);
+            String username = extras.getString(LoginActivity.USER_KEY);
             userView.setText("Hello  : " +  username);
         }
     }

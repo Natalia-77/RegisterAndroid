@@ -1,5 +1,7 @@
 package com.example.register.network.account;
 
+import com.example.register.network.account.dto.LoginResponce;
+import com.example.register.network.account.dto.LoginUserDto;
 import com.example.register.network.account.dto.RegisterResponse;
 import com.example.register.network.account.dto.RegisterUserDto;
 
@@ -13,5 +15,8 @@ public interface AccountApi {
 
     @POST("/api/account/register")
     Call<RegisterResponse> registers(@Body RegisterUserDto registerUserDto);
+
+    @POST("/api/account/login")
+    Call<LoginResponce> loginUser(@Body LoginUserDto loginUserDto);
 }
 

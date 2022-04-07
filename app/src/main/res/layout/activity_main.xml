@@ -3,20 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:onClick="handleClick"
     android:orientation="vertical"
     android:paddingLeft="15dp"
     android:paddingTop="5dp"
     android:paddingRight="15dp"
     android:paddingBottom="15dp">
-    <TextView
-        android:id="@+id/tvInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:text="@string/register"
-        android:textSize="26dp"
-       />
+
     <EditText
         android:id="@+id/name"
         android:layout_width="383dp"
@@ -89,6 +81,16 @@
         android:layout_height="wrap_content"
         android:onClick="handleClick"
         android:text="@string/register" />
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="384dp"
+        android:layout_height="55dp"
+        android:gravity="center"
+        android:onClick="requestToLogin"
+        android:text="@string/login"
+        android:textColor="@color/navy"
+        android:textSize="16sp" />
 
 
 </LinearLayout>

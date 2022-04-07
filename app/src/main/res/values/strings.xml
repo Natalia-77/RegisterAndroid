@@ -8,4 +8,6 @@
     <string name="register">Register</string>
     <string name="photo">Photo</string>
     <string name="success">Successfully</string>
+    <string name="login"><b>Already registered? Login</b></string>
+    <string name="btnlogin"><b> Login</b></string>
 </resources>

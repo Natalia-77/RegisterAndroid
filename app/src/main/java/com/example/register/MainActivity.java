@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView image;
     Button select, register;
     EditText name,email,pass,passconfirm;
-    TextView tvInfo;
+    TextView login;
     Bitmap bitmap=null;
     static final String USER_KEY = "USER";
     String selectPhoto="";
@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tvInfo = findViewById(R.id.tvInfo);
         image = findViewById(R.id.image);
         select = findViewById(R.id.select);
         name=findViewById(R.id.name);
@@ -79,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         pass=findViewById(R.id.pass);
         passconfirm=findViewById(R.id.confirm);
         register=findViewById(R.id.register);
+        login = findViewById(R.id.tvLogin);
     }
 
     public void handleSelectImageClick(View view) {
@@ -137,5 +137,13 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+
+
+    }
+    public void requestToLogin(View view)
+    {
+        Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+        startActivity(intent);
+        finishAffinity();
     }
 }
