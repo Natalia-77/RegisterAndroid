@@ -80,5 +80,21 @@
                 app:backgroundTint="@color/teal_200" />
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/error"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+           >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/errorMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,9 +11,11 @@ import android.widget.Button;
 
 import com.example.register.decodejwt.DecodedTokenJwt;
 import com.example.register.network.account.AccountService;
+import com.example.register.network.account.dto.LoginErrorResponse;
 import com.example.register.network.account.dto.LoginResponce;
 import com.example.register.network.account.dto.LoginUserDto;
 import com.example.register.network.account.dto.PayloadDataDto;
+import com.example.register.servererror.ServerLoginError;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -28,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$");
     private TextInputLayout inputFieldEmail,inputFieldPass;
-    private TextInputEditText inputEmail,inputPassword;
+    private TextInputEditText inputEmail,inputPassword,errorServerLogin;
     //private EditText inputEmail,inputPassword;
     private Button btnLogin;
     static final String USER_KEY = "USER";
@@ -42,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         inputFieldEmail = findViewById(R.id.emailTextInputLayout);
         inputFieldPass = findViewById(R.id.passTextInputLayout);
         btnLogin = findViewById(R.id.btnLogin);
+        errorServerLogin = findViewById(R.id.errorMessage);
 
         //перевірка поля на валідність здійснюється в процесі вводу даних в поле.Як тільки буде отримано
         //валідне значення в полі - повідомлення про помилку зникне.
@@ -94,6 +97,13 @@ public class LoginActivity extends AppCompatActivity {
         loginUserDto.setEmail(inputEmail.getText().toString());
         loginUserDto.setPassword(inputPassword.getText().toString());
 
+        //якщо попередня спроба авторизуватись була невдалою,користувач пробує знову вводити
+        //дані для логіна,то як тільки починає вводити дані в перше поле,то поле з помилкою зі
+        //сторони сервера очищаю.
+        if(loginUserDto.email!=null){
+            errorServerLogin.setText("");
+        }
+
       Call <LoginResponce> call = AccountService.getInstance().json().loginUser(loginUserDto);
       call.enqueue(new Callback<LoginResponce>(){
                        @SneakyThrows
@@ -117,9 +127,18 @@ public class LoginActivity extends AppCompatActivity {
                            }
                            else{
                                try {
-                                   System.out.println("Error!");
-                                   System.out.println(response.code());
-                                   System.out.println(response.errorBody().string());
+                                   //Помилки,отримані зі сторони сервера...
+                                   //System.out.println("Error!");
+                                   //System.out.println("Code"+"-->"+response.code());
+                                   //System.out.println("Error"+"-->"+response.errorBody().string());
+                                   String errorLogin=response.errorBody().string();
+                                   //System.out.println(errorLogin);
+                                   LoginErrorResponse errorResponse = ServerLoginError.loginErrorResponse(errorLogin);
+                                  // System.out.println("GetMess"+"-->"+ errorResponse.getMessage());
+                                   errorServerLogin.setText(errorResponse.getMessage());
+                                   inputEmail.setText("");
+                                   inputPassword.setText("");
+
                                } catch (Exception e) {
                                    System.out.println("Error parse data!");
                                }
