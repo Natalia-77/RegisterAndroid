@@ -10,4 +10,10 @@
     <string name="success">Successfully</string>
     <string name="login"><b>Already registered? Login</b></string>
     <string name="btnlogin"><b> Login</b></string>
+    <style name="counterText">
+        <item name="android:textColor">#aa5353cc</item>
+    </style>
+    <style name="counterOverride">
+        <item name="android:textColor">#ff0000</item>
+    </style>
 </resources>

@@ -4,24 +4,32 @@ package com.example.register;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-
 
 import com.example.register.decodejwt.DecodedTokenJwt;
 import com.example.register.network.account.AccountService;
 import com.example.register.network.account.dto.LoginResponce;
 import com.example.register.network.account.dto.LoginUserDto;
 import com.example.register.network.account.dto.PayloadDataDto;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.regex.Pattern;
+
 import lombok.SneakyThrows;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-
-    private EditText inputEmail,inputPassword;
+    private static final Pattern PASSWORD_PATTERN =
+            Pattern.compile("^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$");
+    private TextInputLayout inputFieldEmail,inputFieldPass;
+    private TextInputEditText inputEmail,inputPassword;
+    //private EditText inputEmail,inputPassword;
     private Button btnLogin;
     static final String USER_KEY = "USER";
 
@@ -31,9 +39,55 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         inputEmail=findViewById(R.id.inputEmail);
         inputPassword = findViewById(R.id.inputPassword);
+        inputFieldEmail = findViewById(R.id.emailTextInputLayout);
+        inputFieldPass = findViewById(R.id.passTextInputLayout);
         btnLogin = findViewById(R.id.btnLogin);
 
+        //перевірка поля на валідність здійснюється в процесі вводу даних в поле.Як тільки буде отримано
+        //валідне значення в полі - повідомлення про помилку зникне.
+        //Не треба натискати на кнопку ЛОГІН,щоб отримати повідомлення помилки.
+        inputFieldEmail.getEditText().addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence text, int start, int count, int after) {
+                String email = inputEmail.getText().toString();
+                if (!PASSWORD_PATTERN.matcher(email).matches()) {
+                    //якщо результат по реджексу false-виводиться повідомлення про помилку.
+                    inputFieldEmail.setError("Enter valid email! ");
+                    inputFieldEmail.setErrorEnabled(true);
+                } else {
+                    //в іншому ж випадку помидки немає.
+                    inputFieldEmail.setError("");
+                    inputFieldEmail.setErrorEnabled(false);
+                }
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+
     }
+//    private boolean validateEmail( String emailInput) {
+//
+//         emailInput = inputFieldEmail.getEditText().getText().toString();
+//        if (emailInput.isEmpty()) {
+//            inputFieldEmail.setError("Field can not be empty");
+//            return false;
+//        }
+//        else if (!PASSWORD_PATTERN.matcher(emailInput).matches()) {
+//            inputFieldEmail.setError("Please enter a valid email address");
+//            return false;
+//        } else {
+//            inputFieldEmail.setError(null);
+//            return true;
+//        }
+//    }
 
     public void handleLoginClick(View view){
         LoginUserDto loginUserDto = new LoginUserDto();
