@@ -1,96 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:paddingLeft="15dp"
-    android:paddingTop="5dp"
-    android:paddingRight="15dp"
-    android:paddingBottom="15dp">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
 
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="383dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="20dp"
-        android:hint="@string/name"
-        android:inputType="text"
-        android:maxLength="50"
-        android:maxLines="1"
-        android:paddingLeft="15dp"
-        android:singleLine="true"
-        android:textColor="@android:color/black" />
-
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="383dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="20dp"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
-        android:maxLength="50"
-        android:maxLines="1"
-        android:paddingLeft="15dp"
-        android:singleLine="true"
-        android:textColor="@android:color/black" />
-
-    <EditText
-        android:id="@+id/pass"
-        android:layout_width="383dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="20dp"
-        android:hint="@string/pass"
-        android:inputType="text"
-        android:maxLength="50"
-        android:maxLines="1"
-        android:paddingLeft="15dp"
-        android:singleLine="true"
-        android:textColor="@android:color/black" />
-
-    <EditText
-        android:id="@+id/confirm"
-        android:layout_width="383dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="20dp"
-        android:hint="@string/confirm"
-        android:inputType="text"
-        android:maxLength="50"
-        android:maxLines="1"
-        android:paddingLeft="15dp"
-        android:singleLine="true"
-        android:textColor="@android:color/black" />
-
-
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="160dp"
-        android:layout_height="120dp"
-        android:contentDescription="@string/photo" />
-
-    <Button
-        android:id="@+id/select"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:onClick="handleSelectImageClick"
-        android:text="@string/select" />
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="handleClick"
-        android:text="@string/register" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nameTextInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Name"
+            app:startIconDrawable="@drawable/ic_baseline_face_24">
 
-    <TextView
-        android:id="@+id/tvLogin"
-        android:layout_width="384dp"
-        android:layout_height="55dp"
-        android:gravity="center"
-        android:onClick="requestToLogin"
-        android:text="@string/login"
-        android:textColor="@color/navy"
-        android:textSize="16sp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-</LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailTextInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Email"
+            app:startIconDrawable="@drawable/ic_email_line">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordTextInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Password"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
+            app:counterOverflowTextAppearance="@style/counterOverride"
+            app:counterTextAppearance="@style/counterText"
+            app:endIconMode="password_toggle"
+            app:startIconDrawable="@drawable/ic_lock">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/confirmTextInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Confirm password"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
+            app:counterOverflowTextAppearance="@style/counterOverride"
+            app:counterTextAppearance="@style/counterText"
+            app:endIconMode="password_toggle"
+            app:startIconDrawable="@drawable/ic_lock">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/errorsTextInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            app:counterOverflowTextAppearance="@style/counterOverride"
+            app:counterTextAppearance="@style/counterText"
+
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/errorsServer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/circle" />
+
+        <Button
+            android:id="@+id/select"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:onClick="handleSelectImageClick"
+            android:text="@string/select" />
+
+        <Button
+            android:id="@+id/register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="handleClick"
+            android:text="@string/register" />
+
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="384dp"
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:onClick="requestToLogin"
+            android:text="@string/login"
+            android:textColor="@color/navy"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
+</ScrollView>

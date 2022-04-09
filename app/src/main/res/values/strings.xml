@@ -16,4 +16,7 @@
     <style name="counterOverride">
         <item name="android:textColor">#ff0000</item>
     </style>
+    <style name="circle">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
