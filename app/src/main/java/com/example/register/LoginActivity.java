@@ -1,11 +1,13 @@
 package com.example.register;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -26,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$");
     private TextInputLayout inputFieldEmail,inputFieldPass;
@@ -38,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        //setContentView(R.layout.activity_login);
         inputEmail=findViewById(R.id.inputEmail);
         inputPassword = findViewById(R.id.inputPassword);
         inputFieldEmail = findViewById(R.id.emailTextInputLayout);
@@ -76,21 +78,19 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-//    private boolean validateEmail( String emailInput) {
-//
-//         emailInput = inputFieldEmail.getEditText().getText().toString();
-//        if (emailInput.isEmpty()) {
-//            inputFieldEmail.setError("Field can not be empty");
-//            return false;
-//        }
-//        else if (!PASSWORD_PATTERN.matcher(emailInput).matches()) {
-//            inputFieldEmail.setError("Please enter a valid email address");
-//            return false;
-//        } else {
-//            inputFieldEmail.setError(null);
-//            return true;
-//        }
-//    }
+
+    @Override
+    int getContentActivityViewId() {
+
+        return R.layout.activity_login;
+    }
+
+    @Override
+    int getNavigationMenuItemId() {
+
+        return R.id.menuLogin;
+    }
+
 
     public void handleLoginClick(View view){
         LoginUserDto loginUserDto = new LoginUserDto();

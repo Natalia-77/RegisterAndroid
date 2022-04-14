@@ -10,13 +10,25 @@
     <string name="success">Successfully</string>
     <string name="login"><b>Already registered? Login</b></string>
     <string name="btnlogin"><b> Login</b></string>
+    <string name="hello">Welcome to Home page</string>
+    <string name="itemHome">Home</string>
+    <string name="itemLogin">Login</string>
+    <string name="itemRegister">Register</string>
+
     <style name="counterText">
         <item name="android:textColor">#aa5353cc</item>
     </style>
+
     <style name="counterOverride">
         <item name="android:textColor">#ff0000</item>
     </style>
+
     <style name="circle">
         <item name="cornerSize">50%</item>
     </style>
+
+    <string name="title_activity_bases">BasesActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

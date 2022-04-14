@@ -7,9 +7,15 @@
         <entry key="..\:/Natalia/Project1/AndroidRegister/app/src/main/res/drawable/ic_email_line.xml" value="0.2703125" />
         <entry key="..\:/Natalia/Project1/AndroidRegister/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
         <entry key="..\:/Natalia/Project1/AndroidRegister/app/src/main/res/drawable/ic_lock.xml" value="0.2703125" />
-        <entry key="..\:/Natalia/Project1/AndroidRegister/app/src/main/res/layout/activity_login.xml" value="0.2789115646258503" />
+        <entry key="..\:/Natalia/Project1/AndroidRegister/app/src/main/res/drawable/selector.xml" value="0.2703125" />
+        <entry key="..\:/Natalia/Project1/AndroidRegister/app/src/main/res/layout/activity_base.xml" value="0.264" />
+        <entry key="..\:/Natalia/Project1/AndroidRegister/app/src/main/res/layout/activity_bases.xml" value="0.14166666666666666" />
+        <entry key="..\:/Natalia/Project1/AndroidRegister/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Natalia/Project1/AndroidRegister/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Natalia/Project1/AndroidRegister/app/src/main/res/layout/activity_register.xml" value="0.264" />
         <entry key="..\:/Natalia/Project1/AndroidRegister/app/src/main/res/layout/succsess_activity.xml" value="0.264" />
+        <entry key="..\:/Natalia/Project1/AndroidRegister/app/src/main/res/menu/bottom_nav_menu.xml" value="0.264" />
+        <entry key="..\:/Natalia/Project1/AndroidRegister/app/src/main/res/menu/navbar_items.xml" value="0.264" />
         <entry key="..\:/Natalia/Project1/AndroidRegister/app/src/main/res/xml/request_config.xml" value="0.13020833333333334" />
       </map>
     </option>
