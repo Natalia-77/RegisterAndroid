@@ -39,7 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
     }
 
     @Override
-    public boolean 	onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.menuRegister) {
             startActivity(new Intent(getApplicationContext(), RegisterActivity.class));

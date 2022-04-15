@@ -16,9 +16,15 @@ import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.register.network.account.AccountService;
@@ -45,11 +51,13 @@ public class RegisterActivity extends BaseActivity {
     private TextInputLayout inputRegisterName, inputRegisterEmail, inputRegisterPass, inputRegisterConfirm, errorRegisterLayout;
     private TextInputEditText name, email, pass, passconfirm, errorServerRegister;
     private ShapeableImageView image;
+    private RelativeLayout layout;
     Button select, register;
     TextView login;
     Bitmap bitmap = null;
     static final String USER_KEY = "USER";
     String selectPhoto = "";
+    private ProgressBar spinner;
 
     //функція,що обробляє результат повертає об"єкт ActivityResultLauncher,який застосовується для запуску іншої activity.
     //ActivityResultCallback представляє інтерфейс з методом onActivityResult,якийуде обробляти результат.
@@ -95,6 +103,10 @@ public class RegisterActivity extends BaseActivity {
         inputRegisterPass = findViewById(R.id.passwordTextInputLayout);
         inputRegisterConfirm = findViewById(R.id.confirmTextInputLayout);
         errorRegisterLayout = findViewById(R.id.errorsTextInputLayout);
+        //-----Progress Bar-------
+        layout = findViewById(R.id.relativeLayoutProgress);
+        spinner = findViewById(R.id.progressBar);
+        //-----Отримала екземпляр класу------
 
         inputRegisterName.getEditText().addTextChangedListener(new TextWatcher() {
 
@@ -225,13 +237,22 @@ public class RegisterActivity extends BaseActivity {
         registerUserDto.setConfirmPassword(passconfirm.getText().toString());
         registerUserDto.setPhoto(selectPhoto);
 
+        //-----Отримала екземпляр класу------
+        DialogProgressBar progressBar = new DialogProgressBar(this);
+        //-----Як тільки натиснула кнопку Реєстрація,відкривається Прогрес бар...
+        progressBar.show();
+
         AccountService.getInstance()
                 .json()
                 .registers(registerUserDto)
                 .enqueue(new Callback<RegisterResponse>() {
                     @Override
                     public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+
                         if (response.isSuccessful()) {
+                            //------Якщо все ОК,то закриваю...
+                            progressBar.dismiss();
+
                             RegisterResponse data = response.body();
                             System.out.println("------++++++++++++++++-----");
                             //За умови 200 - перехід на іншу activity ...
@@ -245,6 +266,7 @@ public class RegisterActivity extends BaseActivity {
                         } else {
                             try {
                                 System.out.println("******************");
+                                //spinner.setVisibility(View.GONE);
                                 String serverError = response.errorBody().string();
                                 //конвертація з JSON в Gson
                                 RegisterServerValidErrors serverValidErrors = ServerRegisterError.errors(serverError);
