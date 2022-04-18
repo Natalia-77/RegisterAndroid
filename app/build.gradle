@@ -58,5 +58,7 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok:1.18.22'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
 
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
 
 }

@@ -103,10 +103,6 @@ public class RegisterActivity extends BaseActivity {
         inputRegisterPass = findViewById(R.id.passwordTextInputLayout);
         inputRegisterConfirm = findViewById(R.id.confirmTextInputLayout);
         errorRegisterLayout = findViewById(R.id.errorsTextInputLayout);
-        //-----Progress Bar-------
-        layout = findViewById(R.id.relativeLayoutProgress);
-        spinner = findViewById(R.id.progressBar);
-        //-----Отримала екземпляр класу------
 
         inputRegisterName.getEditText().addTextChangedListener(new TextWatcher() {
 
