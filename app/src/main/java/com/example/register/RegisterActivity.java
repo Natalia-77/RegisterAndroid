@@ -115,7 +115,10 @@ public class RegisterActivity extends BaseActivity {
 
         if(flag){
 
-            Toast.makeText(this, "Network connection is ok", Toast.LENGTH_LONG).show();
+
+            String res =isConnectedFast(getApplicationContext());
+            Toast.makeText(this, res, Toast.LENGTH_LONG).show();
+
         }
         else{
 
@@ -245,6 +248,30 @@ public class RegisterActivity extends BaseActivity {
 
     }
 
+    public static String isConnectedFast(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = cm.getActiveNetworkInfo();
+
+        if ((info != null && info.isConnected())) {
+            return isConnectionFast(info.getType(),
+                    info.getSubtype());
+        } else
+            return "No NetWork Access";
+
+    }
+    public static String isConnectionFast(int type, int subType) {
+        if (type == ConnectivityManager.TYPE_WIFI) {
+            System.out.println("CONNECTED VIA WIFI");
+            return "CONNECTED FROM WIFI";
+        } else if (type == ConnectivityManager.TYPE_MOBILE) {
+
+            System.out.println("CONNECTED VIA MOBILE");
+            return "CONNECTED FROM MOBILE";
+            }
+        return "";
+
+    }
 
     @Override
     int getContentActivityViewId() {
