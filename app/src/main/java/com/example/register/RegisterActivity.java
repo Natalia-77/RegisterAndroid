@@ -1,31 +1,31 @@
 package com.example.register;
 
-
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.register.network.account.AccountService;
 import com.example.register.network.account.dto.RegisterResponse;
@@ -38,6 +38,10 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import retrofit2.Call;
@@ -54,10 +58,11 @@ public class RegisterActivity extends BaseActivity {
     private RelativeLayout layout;
     Button select, register;
     TextView login;
-    Bitmap bitmap = null;
+    int SELECT_PICTURE = 200;
     static final String USER_KEY = "USER";
     String selectPhoto = "";
     private ProgressBar spinner;
+    boolean flag = false;
 
     //функція,що обробляє результат повертає об"єкт ActivityResultLauncher,який застосовується для запуску іншої activity.
     //ActivityResultCallback представляє інтерфейс з методом onActivityResult,якийуде обробляти результат.
@@ -70,8 +75,10 @@ public class RegisterActivity extends BaseActivity {
                         Intent intent = result.getData();
                         Uri uri = intent.getData();
                         image.setImageURI(uri);
+                        Bitmap bitmap=null;
+
                         try {
-                            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                          bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -103,6 +110,17 @@ public class RegisterActivity extends BaseActivity {
         inputRegisterPass = findViewById(R.id.passwordTextInputLayout);
         inputRegisterConfirm = findViewById(R.id.confirmTextInputLayout);
         errorRegisterLayout = findViewById(R.id.errorsTextInputLayout);
+
+        flag=isConnected(getApplicationContext());
+
+        if(flag){
+
+            Toast.makeText(this, "Network connection is ok", Toast.LENGTH_LONG).show();
+        }
+        else{
+
+            Toast.makeText(this, "Network connection is fail", Toast.LENGTH_LONG).show();
+        }
 
         inputRegisterName.getEditText().addTextChangedListener(new TextWatcher() {
 
@@ -202,6 +220,32 @@ public class RegisterActivity extends BaseActivity {
 
     }
 
+    public boolean isConnected(Context context) {
+        //Отримала екземпляр класу ConnectivityManager
+        ConnectivityManager connectivity = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity == null) {
+           // System.out.println("Not connected");
+            return false;
+        }
+        //Отримую інфо про всі наявні мережі
+        NetworkInfo[] info = connectivity.getAllNetworkInfo();
+        //якщо вони виявлені...
+        if (info != null) {
+            // iтератор проходжу по них...
+            for (int i = 0; i < info.length; i++) {
+                //перевіряю стан підключення мережі...
+                if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+                   // System.out.println("++++");
+                    return true;
+                }
+            }
+        }
+        return false;
+
+    }
+
+
     @Override
     int getContentActivityViewId() {
         return R.layout.activity_register;
@@ -211,6 +255,7 @@ public class RegisterActivity extends BaseActivity {
     int getNavigationMenuItemId() {
         return R.id.menuRegister;
     }
+
 
     public void handleSelectImageClick(View view) {
 
@@ -232,7 +277,6 @@ public class RegisterActivity extends BaseActivity {
         registerUserDto.setPassword(pass.getText().toString());
         registerUserDto.setConfirmPassword(passconfirm.getText().toString());
         registerUserDto.setPhoto(selectPhoto);
-
         //-----Отримала екземпляр класу------
         DialogProgressBar progressBar = new DialogProgressBar(this);
         //-----Як тільки натиснула кнопку Реєстрація,відкривається Прогрес бар...
@@ -262,7 +306,7 @@ public class RegisterActivity extends BaseActivity {
                         } else {
                             try {
                                 System.out.println("******************");
-                                //spinner.setVisibility(View.GONE);
+                                progressBar.dismiss();
                                 String serverError = response.errorBody().string();
                                 //конвертація з JSON в Gson
                                 RegisterServerValidErrors serverValidErrors = ServerRegisterError.errors(serverError);
@@ -272,7 +316,7 @@ public class RegisterActivity extends BaseActivity {
                                 //всі помилки записую у відповідне поле для помилок в стовпчик.
                                 errorServerRegister.setText(res);
                             } catch (Exception e) {
-                                System.out.println("Error parse data");
+                                System.out.println("Error parse data"+e.getMessage());
                             }
                         }
                     }

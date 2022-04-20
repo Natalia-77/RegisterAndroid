@@ -16,9 +16,9 @@ public class AccountService {
     private AccountService()
     {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(20, TimeUnit.SECONDS)
-                .writeTimeout(20, TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(120, TimeUnit.SECONDS)
+                .writeTimeout(120, TimeUnit.SECONDS)
+                .readTimeout(130, TimeUnit.SECONDS)
                 .build();
 
         retrofit = new Retrofit.Builder()
