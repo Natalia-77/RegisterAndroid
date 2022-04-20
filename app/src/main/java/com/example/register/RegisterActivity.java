@@ -111,17 +111,12 @@ public class RegisterActivity extends BaseActivity {
         inputRegisterConfirm = findViewById(R.id.confirmTextInputLayout);
         errorRegisterLayout = findViewById(R.id.errorsTextInputLayout);
 
-        flag=isConnected(getApplicationContext());
-
+        flag = isConnected(getApplicationContext());
         if(flag){
-
-
-            String res =isConnectedFast(getApplicationContext());
+            String res = isConnectedFast(getApplicationContext());
             Toast.makeText(this, res, Toast.LENGTH_LONG).show();
-
         }
         else{
-
             Toast.makeText(this, "Network connection is fail", Toast.LENGTH_LONG).show();
         }
 
