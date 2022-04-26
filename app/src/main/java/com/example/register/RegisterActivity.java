@@ -57,7 +57,7 @@ public class RegisterActivity extends BaseActivity {
     private ShapeableImageView image;
     private RelativeLayout layout;
     Button select, register;
-    TextView login;
+    //TextView login;
     int SELECT_PICTURE = 200;
     static final String USER_KEY = "USER";
     String selectPhoto = "";

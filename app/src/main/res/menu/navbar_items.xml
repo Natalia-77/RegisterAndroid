@@ -14,5 +14,10 @@
         android:id="@+id/menuRegister"
         android:icon="@drawable/ic_baseline_group_add_24"
         android:title="@string/itemRegister"
-        app:itemTextColor="@android:color/black" />
+         />
+    <item
+        android:id="@+id/menuUsers"
+        android:icon="@drawable/ic_baseline_list_24"
+        android:title="@string/itemUsers"
+         />
 </menu>

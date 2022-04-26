@@ -14,6 +14,7 @@
     <string name="itemHome">Home</string>
     <string name="itemLogin">Login</string>
     <string name="itemRegister">Register</string>
+    <string name="itemUsers">Users</string>
 
     <style name="counterText">
         <item name="android:textColor">#aa5353cc</item>
@@ -27,8 +28,11 @@
         <item name="cornerSize">50%</item>
     </style>
 
-    <string name="title_activity_bases">BasesActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="button_delete_user">Delete</string>
+    <string name="button_edit_user">Edit</string>
+    <!--    <string name="title_activity_bases">BasesActivity</string>-->
+    <!--    <string name="title_home">Home</string>-->
+    <!--    <string name="title_dashboard">Dashboard</string>-->
+    <string name="update">Update</string>
+    <string name="title_listUsers">Users</string>
 </resources>

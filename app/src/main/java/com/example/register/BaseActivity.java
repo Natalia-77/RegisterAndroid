@@ -39,7 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected( MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.menuRegister) {
             startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
@@ -48,6 +48,8 @@ public abstract class BaseActivity extends AppCompatActivity implements
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         } else if (itemId == R.id.menuHome) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        } else if (itemId == R.id.menuUsers) {
+            startActivity(new Intent(getApplicationContext(), UserActivity.class));
         }
         overridePendingTransition(0, 0);
         finish();
