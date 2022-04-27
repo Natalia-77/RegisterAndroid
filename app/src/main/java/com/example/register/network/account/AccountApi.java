@@ -8,14 +8,11 @@ import com.example.register.network.account.dto.UpdateResponse;
 import com.example.register.network.account.dto.UpdateUserModel;
 import com.example.register.network.account.dto.UserDto;
 
-import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -32,7 +29,7 @@ public interface AccountApi {
     Call<List<UserDto>> getUsers();
 
     @PUT("api/account/{id}")
-    Call<UpdateResponse> updateUser(@Path("id") int id, @Body UpdateUserModel body);
+    Call<UpdateResponse> updateUser(@Path("id") int id, @Body UpdateUserModel updateUserModel);
 
 }
 

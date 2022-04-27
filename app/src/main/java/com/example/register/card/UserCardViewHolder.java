@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.register.R;
-import com.example.register.network.account.dto.UserDto;
 
 import lombok.NonNull;
 

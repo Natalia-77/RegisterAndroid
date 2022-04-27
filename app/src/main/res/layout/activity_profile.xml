@@ -43,21 +43,31 @@
             app:startIconDrawable="@drawable/ic_email_line">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/email"
+                android:id="@+id/email_profile"
                 android:layout_width="match_parent"
                 android:layout_height="49dp"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.imageview.ShapeableImageView
+        <ImageView
             android:id="@+id/imageProfile"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginTop="5dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/circle" />
+            android:layout_margin="10dp"
+
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/email_profile"
+            />
+<!--        <com.google.android.material.imageview.ShapeableImageView-->
+<!--            android:id="@+id/imageProfile"-->
+<!--            android:layout_width="200dp"-->
+<!--            android:layout_height="200dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:scaleType="centerCrop"          -->
+
+<!--            app:shapeAppearanceOverlay="@style/circle" />-->
 
         <Button
             android:id="@+id/selectImage"
@@ -71,7 +81,7 @@
             android:id="@+id/update"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:onClick="handleClick"
+            android:onClick="handleClickupdate"
             android:text="@string/update" />
 
     </LinearLayout>

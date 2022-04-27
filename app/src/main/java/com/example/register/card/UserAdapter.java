@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.register.ProfileActivity;
-import com.example.register.RegisterActivity;
-import com.example.register.SuccessActivity;
 import com.example.register.app.HomeApplication;
 import com.example.register.constants.Url;
 import com.example.register.network.account.dto.UserDto;
@@ -21,23 +19,18 @@ import com.example.register.R;
 
 import java.util.List;
 
-import retrofit2.Callback;
-
 // Роль адаптера полягає в перетворенні об’єкта в позиції в елемент рядка списку ,
 // який потрібно вставити.
-//Однак для RecyclerView-адаптера потрібне існування об’єкта UserCardViewHolder, який описує та
-// надає доступ
-// до всіх представлень у кожному рядку елементів
+// Для RecyclerView-адаптера потрібне існування об’єкта UserCardViewHolder, який описує та
+// надає доступдо всіх представлень у кожному рядку елементів
 public class UserAdapter extends RecyclerView.Adapter<UserCardViewHolder> {
 
     // зміннa-член для списку контактів і передаємо список через наш конструктор
     private List<UserDto> listUsers;
-    public static final String NAME = "n";
 
     public UserAdapter(List<UserDto> listUsers) {
 
         this.listUsers = listUsers;
-
     }
 
     @NonNull
@@ -65,24 +58,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserCardViewHolder> {
 
         if (listUsers != null && position < listUsers.size()) {
             UserDto user = listUsers.get(position);
-
-//            holder.btnEdit.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    System.out.println("Id"+"-->"+ user.getId());
-//
-//                }
-//            });
-
+            //обробка кліку по кнопці РЕДАГУВАТИ для окремо взятого користувача...
             holder.btnEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //this.selected(user);
                     Intent intent = new Intent(HomeApplication.getAppContext(), ProfileActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra(NAME, user.getName());
+                    //передаю в актівіті профіля дані про об"єкт...
+                    intent.putExtra("Place", user);
                     HomeApplication.getAppContext().startActivity(intent);
-                    System.out.println("+++++");
+                    //System.out.println("User email "+"-->"+user.getEmail());
                 }
             });
             holder.userId.setText(Integer.toString(user.getId()));
@@ -102,6 +87,5 @@ public class UserAdapter extends RecyclerView.Adapter<UserCardViewHolder> {
     public int getItemCount() {
         return listUsers.size();
     }
-
 
 }
