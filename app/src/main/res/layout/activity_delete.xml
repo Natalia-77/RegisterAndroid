@@ -13,7 +13,7 @@
         android:layout_marginTop="45dp"
         android:layout_marginRight="16dp"
         android:orientation="vertical"
-        tools:context=".ProfileActivity">
+        tools:context=".DeleteActivity">
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -54,26 +54,26 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_centerHorizontal="true"
-
             android:layout_centerVertical="true"
             android:layout_margin="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/email_profile" />
 
         <Button
-            android:id="@+id/selectImage"
+            android:id="@+id/deleteUser"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:backgroundTint="@color/purple_me"
-            android:onClick="handleSelectImageClick"
-            android:text="@string/select" />
+            android:layout_height="55dp"
+            android:backgroundTint="@color/red_hot"
+            android:onClick="handleDeleteUser"
+            android:text="@string/title_delete" />
 
         <Button
-            android:id="@+id/update"
+            android:id="@+id/back"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:onClick="handleClickupdate"
-            android:text="@string/update" />
+            android:backgroundTint="@color/green"
+            android:onClick="handleBackToList"
+            android:text="@string/back" />
 
     </LinearLayout>
 

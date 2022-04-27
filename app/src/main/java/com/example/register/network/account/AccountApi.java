@@ -1,5 +1,6 @@
 package com.example.register.network.account;
 
+import com.example.register.network.account.dto.DeleteResponse;
 import com.example.register.network.account.dto.LoginResponce;
 import com.example.register.network.account.dto.LoginUserDto;
 import com.example.register.network.account.dto.RegisterResponse;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -31,5 +33,7 @@ public interface AccountApi {
     @PUT("api/account/{id}")
     Call<UpdateResponse> updateUser(@Path("id") int id, @Body UpdateUserModel updateUserModel);
 
+    @DELETE("api/account/{id}")
+    Call<DeleteResponse> deleteUser(@Path("id") int id);
 }
 

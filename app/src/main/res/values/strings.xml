@@ -30,9 +30,8 @@
 
     <string name="button_delete_user">Delete</string>
     <string name="button_edit_user">Edit</string>
-    <!--    <string name="title_activity_bases">BasesActivity</string>-->
-    <!--    <string name="title_home">Home</string>-->
-    <!--    <string name="title_dashboard">Dashboard</string>-->
+    <string name="title_delete">Yes,delete this</string>
+    <string name="back">Go back to users-list</string>
     <string name="update">Update</string>
     <string name="title_listUsers">Users</string>
 </resources>

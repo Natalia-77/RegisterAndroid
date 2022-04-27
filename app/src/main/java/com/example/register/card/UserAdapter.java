@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.register.DeleteActivity;
 import com.example.register.ProfileActivity;
 import com.example.register.app.HomeApplication;
 import com.example.register.constants.Url;
@@ -62,12 +63,25 @@ public class UserAdapter extends RecyclerView.Adapter<UserCardViewHolder> {
             holder.btnEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(HomeApplication.getAppContext(), ProfileActivity.class);
+                    Intent intent = new Intent(HomeApplication.getAppContext(),
+                            ProfileActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     //передаю в актівіті профіля дані про об"єкт...
                     intent.putExtra("Place", user);
                     HomeApplication.getAppContext().startActivity(intent);
                     //System.out.println("User email "+"-->"+user.getEmail());
+                }
+            });
+            //по клфку на кнопку ВИДАЛИТИ попадаю на форму,де також всі дані і
+            // кнопка для підтвердження видалення
+            holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(HomeApplication.getAppContext(),
+                            DeleteActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("Place", user);
+                    HomeApplication.getAppContext().startActivity(intent);
                 }
             });
             holder.userId.setText(Integer.toString(user.getId()));
